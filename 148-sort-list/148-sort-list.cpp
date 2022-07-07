@@ -42,42 +42,78 @@ class Solution {
 //         return dummy->next;
 
 //         }
-    ListNode*mergelist(ListNode*L1,ListNode*L2)
+    
+//     ListNode*mergelist(ListNode*L1,ListNode*L2)
+//     {
+//         ListNode*p1=L1;
+//         ListNode*p2=L2;
+//         ListNode*dummy=new ListNode(-1);
+//         ListNode*p=dummy;
+//         while(p1!=NULL && p2!=NULL)
+//         {
+//             if(p1->val<=p2->val)
+//             {
+//                 p->next=p1;
+//                 p1=p1->next;
+//             }
+//             else
+//             {
+//                 p->next=p2;
+//                 p2=p2->next;
+//             }
+//             p=p->next;
+            
+//         }
+//         if(p1!=NULL){
+//             p->next=p1;
+//             p=p->next;
+//             p1=p1->next;
+//         }
+//         if(p2!=NULL)
+//         {
+//             p->next=p2;
+//             p=p->next;
+//             p2=p2->next;
+//         }
+//         return dummy->next;
+//     }
+        
+    ListNode *merge(ListNode*l1,ListNode*l2)
     {
-        ListNode*p1=L1;
-        ListNode*p2=L2;
         ListNode*dummy=new ListNode(-1);
-        ListNode*p=dummy;
+        ListNode*p1=l1;
+        ListNode*p2=l2;
+        ListNode*p3=dummy;
+        
         while(p1!=NULL && p2!=NULL)
         {
             if(p1->val<=p2->val)
             {
-                p->next=p1;
+                p3->next=p1;
                 p1=p1->next;
             }
             else
             {
-                p->next=p2;
+                p3->next=p2;
                 p2=p2->next;
             }
-            p=p->next;
-            
+            p3=p3->next;
         }
-        if(p1!=NULL){
-            p->next=p1;
-            p=p->next;
-            p1=p1->next;
-        }
-        if(p2!=NULL)
+        while(p1!=NULL)
         {
-            p->next=p2;
-            p=p->next;
+            p3->next=p1;
+            p1=p1->next;
+            p3=p3->next;
+        }
+        while(p2!=NULL)
+        {
+            p3->next=p2;
             p2=p2->next;
+            p3=p3->next;
         }
         return dummy->next;
-    }
         
-    
+    }
     
    // ListNode* mergelist(ListNode*list1,ListNode*list2)
    //  {
@@ -154,23 +190,42 @@ public:
         // ListNode *l2=sortList(slow);
         // return mergelist(l1,l2);
         
+        // ListNode*slow=head;
+        // ListNode*fast=head;
+        // ListNode*temp=NULL;
+        // if(head==NULL || head->next==NULL)
+        // {
+        //     return head;
+        // }
+        // while(fast!=NULL &&  fast->next!=NULL)
+        // {
+        //     temp=slow;
+        //     slow=slow->next;
+        //     fast=fast->next->next;
+        // }
+        // temp->next=NULL;
+        // ListNode*l1=sortList(head);
+        // ListNode*l2=sortList(slow);
+        // return mergelist(l1,l2);
+        
         ListNode*slow=head;
         ListNode*fast=head;
-        ListNode*temp=NULL;
+        ListNode*temp=head;
         if(head==NULL || head->next==NULL)
         {
             return head;
         }
-        while(fast!=NULL &&  fast->next!=NULL)
+        while(fast!=NULL && fast->next!=NULL)
         {
             temp=slow;
             slow=slow->next;
             fast=fast->next->next;
         }
+        
         temp->next=NULL;
         ListNode*l1=sortList(head);
         ListNode*l2=sortList(slow);
-        return mergelist(l1,l2);
+        return merge(l1,l2);
         
     }
 };
