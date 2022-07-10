@@ -23,12 +23,20 @@ class Solution {
     //     return 1+max(lh,rh);
     // }
     private:
-    int getmax(TreeNode*node,int &dia)
+    // int getmax(TreeNode*node,int &dia)
+    // {
+    //     if(node==NULL)return NULL;
+    //     int lh=getmax(node->left,dia);
+    //     int rh=getmax(node->right,dia);
+    //     dia=max(dia,lh+rh);
+    //     return 1+max(lh,rh);
+    // }
+    int getmaxht(TreeNode* node,int &d)
     {
-        if(node==NULL)return NULL;
-        int lh=getmax(node->left,dia);
-        int rh=getmax(node->right,dia);
-        dia=max(dia,lh+rh);
+        if(!node)return 0;
+        int lh=getmaxht(node->left,d);
+        int rh=getmaxht(node->right,d);
+        d=max(d,lh+rh);
         return 1+max(lh,rh);
     }
 public:
@@ -36,9 +44,15 @@ public:
         // int maxi=0;
         // findmax(root,maxi);
         // return maxi;
-        int dia=0;
-        getmax(root,dia);
-        return dia;
+        
+        
+        // int dia=0;
+        // getmax(root,dia);
+        // return dia;
+        
+        int d=0;
+        getmaxht(root,d);
+        return d;
         
         
         
