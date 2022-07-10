@@ -23,15 +23,25 @@ class Solution {
 //         return dp[ind]= cost[ind]+min(getcost(ind-1,cost,dp),getcost(ind-2,cost,dp));
         
 //     }
-    int getmincost(int ind,vector<int>&cost,vector<int>&dp)
+    // int getmincost(int ind,vector<int>&cost,vector<int>&dp)
+    // {
+    //     int n=cost.size();
+    //     if(ind<2)return cost[ind];
+    //     if(dp[ind]!=-1)
+    //     {
+    //         return dp[ind];
+    //     }
+    //     return dp[ind]= cost[ind]+min(getmincost(ind-1,cost,dp),getmincost(ind-2,cost,dp));
+    // }
+    
+    int getmincost(vector<int>&cost,int ind,vector<int>&dp)
     {
-        int n=cost.size();
         if(ind<2)return cost[ind];
         if(dp[ind]!=-1)
         {
             return dp[ind];
         }
-        return dp[ind]= cost[ind]+min(getmincost(ind-1,cost,dp),getmincost(ind-2,cost,dp));
+        return dp[ind]=cost[ind]+min(getmincost(cost,ind-1,dp),getmincost(cost,ind-2,dp));
     }
     
 public:
@@ -45,8 +55,11 @@ public:
         // vector<int>dp(n+1,-1);
         // return min(getcost(n-1,cost,dp),getcost(n-2,cost,dp));
         
+        // vector<int>dp(n+1,-1);
+        // return min(getmincost(n-1,cost,dp),getmincost(n-2,cost,dp));
+        
         vector<int>dp(n+1,-1);
-        return min(getmincost(n-1,cost,dp),getmincost(n-2,cost,dp));
+        return min(getmincost(cost,n-1,dp),getmincost(cost,n-2,dp));
         
         
     }
