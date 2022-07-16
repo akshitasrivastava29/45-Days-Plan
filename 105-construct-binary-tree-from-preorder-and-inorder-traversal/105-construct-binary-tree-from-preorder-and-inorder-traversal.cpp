@@ -33,25 +33,47 @@ class Solution {
 //         return node;
     
 //     }
-    int previ=0;
+    // ------
+//     int previ=0;
+//     private:
+//     TreeNode*createTree(vector<int>&preorder,vector<int>&inorder,int st,int end)
+//     {
+//         if(st>end)return NULL;
+        
+    
+//     TreeNode*node=new TreeNode(preorder[previ++]);
+//     int pos;
+//     for(int i=st;i<end;i++){
+//         if(inorder[i]==node->val)
+//         {
+//             pos=i;
+//             break;
+//         }
+//     }
+//     node->left=createTree(preorder,inorder,st,pos-1);
+//     node->right=createTree(preorder,inorder,pos+1,end);
+//     return node;
+//     }
+    // ----
+    int prevind=0;
     private:
     TreeNode*createTree(vector<int>&preorder,vector<int>&inorder,int st,int end)
     {
         if(st>end)return NULL;
-        
-    
-    TreeNode*node=new TreeNode(preorder[previ++]);
-    int pos;
-    for(int i=st;i<end;i++){
-        if(inorder[i]==node->val)
+        TreeNode*node=new TreeNode(preorder[prevind++]);
+        int pos;
+        for(int i=0;i<inorder.size();i++)
         {
-            pos=i;
-            break;
+            if(inorder[i]==node->val)
+            {
+                pos=i;
+                break;
+            }
         }
-    }
-    node->left=createTree(preorder,inorder,st,pos-1);
-    node->right=createTree(preorder,inorder,pos+1,end);
-    return node;
+        node->left=createTree(preorder,inorder,st,pos-1);
+        node->right=createTree(preorder,inorder,pos+1,end);
+        return node;
+        
     }
     
     public:
@@ -60,6 +82,9 @@ class Solution {
         int n=inorder.size();
         return createTree(preorder,inorder,0,n-1);
     }
+    // -------
+    
+    
     
     
 };
