@@ -45,15 +45,34 @@ public:
         // -----------
         
         
+        // if(!root)return 0;
+        // int lh=1;
+        // int rh=1;
+        // TreeNode*leftsubtree=root->left;
+        // TreeNode*rightsubtree=root->right;
+        // while(leftsubtree)
+        // {
+        //     leftsubtree=leftsubtree->left;
+        //         lh+=1;
+        // }
+        // while(rightsubtree)
+        // {
+        //     rightsubtree=rightsubtree->right;
+        //     rh+=1;
+        // }
+        // if(lh==rh)
+        //     return pow(2,lh)-1;
+        // else
+        //     return 1+countNodes(root->left)+countNodes(root->right);
+        // -----------------
         if(!root)return 0;
-        int lh=1;
-        int rh=1;
+        int lh=1,rh=1;
         TreeNode*leftsubtree=root->left;
         TreeNode*rightsubtree=root->right;
         while(leftsubtree)
         {
             leftsubtree=leftsubtree->left;
-                lh+=1;
+            lh+=1;
         }
         while(rightsubtree)
         {
@@ -61,9 +80,14 @@ public:
             rh+=1;
         }
         if(lh==rh)
+        {
             return pow(2,lh)-1;
+        }
         else
+        
             return 1+countNodes(root->left)+countNodes(root->right);
+        
+        
         
     }
 };
