@@ -11,7 +11,7 @@
 class Solution {
 public:
     ListNode* partition(ListNode* head, int x) {
-      ListNode*left=new ListNode(-1);
+      // ListNode*left=new ListNode(-1);
         // ListNode*right=new ListNode(-1);
         // ListNode*ptr1=left;
         //  ListNode*ptr2=right;
@@ -34,27 +34,51 @@ public:
         // left->next=ptr2->next;
         // return ptr1->next;
         
-        ListNode*smaller=new ListNode();
-        ListNode*greater=new ListNode();
-        ListNode*p1=smaller;
-        ListNode*p2=greater;
+        // ListNode*smaller=new ListNode();
+        // ListNode*greater=new ListNode();
+        // ListNode*p1=smaller;
+        // ListNode*p2=greater;
+        // ListNode*p=head;
+        // while(p)
+        // {
+        //     if(p->val<x)
+        //     {
+        //         smaller->next=p;
+        //         smaller=smaller->next;
+        //     }
+        //     else
+        //     {
+        //        greater->next=p;
+        //         greater=greater->next;
+        //     }
+        //     p=p->next;
+        // }
+        // greater->next=NULL;
+        // smaller->next=p2->next;
+        // return p1->next;
+        
+        
+        ListNode*left=new ListNode();
+        ListNode*right=new ListNode();
+        ListNode*p1=left;
+        ListNode*p2=right;
         ListNode*p=head;
         while(p)
         {
             if(p->val<x)
             {
-                smaller->next=p;
-                smaller=smaller->next;
+                left->next=p;
+                left=left->next;
             }
             else
             {
-               greater->next=p;
-                greater=greater->next;
+                right->next=p;
+                right=right->next;
             }
             p=p->next;
         }
-        greater->next=NULL;
-        smaller->next=p2->next;
+        right->next=NULL;
+        left->next=p2->next;
         return p1->next;
        
         
