@@ -43,26 +43,47 @@ class Solution {
     //     }
     // }
     // --
-    void getp(vector<int>&nums,vector<int>&temp,vector<vector<int>>&ans,int v[])
+    // void getp(vector<int>&nums,vector<int>&temp,vector<vector<int>>&ans,int v[])
+    // {
+    //     int n=nums.size();
+    //     if(temp.size()==n)
+    //     {
+    //         ans.push_back(temp);
+    //         return ;
+    //     }
+    //     for(int i=0;i<n;i++)
+    //     {
+    //         if(!v[i])
+    //         {
+    //             temp.push_back(nums[i]);
+    //             v[i]=1;
+    //             getp(nums,temp,ans,v);
+    //             v[i]=0;
+    //             temp.pop_back();
+    //         }
+    //     }
+    void swap(int&a,int &b)
+    {
+        int temp=a;
+        a=b;
+        b=temp;
+    }
+    
+    void fun(int ind,vector<int>&nums,vector<vector<int>>&ans)
     {
         int n=nums.size();
-        if(temp.size()==n)
+        if(ind==n)
         {
-            ans.push_back(temp);
-            return ;
+            ans.push_back(nums);
         }
-        for(int i=0;i<n;i++)
+        for(int i=ind;i<n;i++)
         {
-            if(!v[i])
-            {
-                temp.push_back(nums[i]);
-                v[i]=1;
-                getp(nums,temp,ans,v);
-                v[i]=0;
-                temp.pop_back();
-            }
+            swap(nums[i],nums[ind]);
+            fun(ind+1,nums,ans);
+            swap(nums[ind],nums[i]);
         }
     }
+    
 public:
     vector<vector<int>> permute(vector<int>& nums) {
         // vector<vector<int>>ans;
@@ -88,15 +109,21 @@ public:
         // fun(ds,ans,nums,freq);
         // return ans;
         
+        // int n=nums.size();
+        // vector<int>temp;
+        // vector<vector<int>>ans;
+        // int v[n];
+        // for(int i=0;i<n;i++)
+        // {
+        //     v[i]=0;
+        // }
+        // getp(nums,temp,ans,v);
+        // return ans;
+        // ----------
+        
         int n=nums.size();
-        vector<int>temp;
         vector<vector<int>>ans;
-        int v[n];
-        for(int i=0;i<n;i++)
-        {
-            v[i]=0;
-        }
-        getp(nums,temp,ans,v);
+        fun(0,nums,ans);
         return ans;
         
     }
