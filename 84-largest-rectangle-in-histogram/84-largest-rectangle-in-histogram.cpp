@@ -142,10 +142,10 @@ public:
             }
             st.push(i);
         }
-        while(!st.empty())
-        {
-            st.pop();
-        }
+        // while(!st.empty())
+        // {
+        //     st.pop();
+        // }
         int maxA=0;
         for(int i=0;i<heights.size();i++)
         {
