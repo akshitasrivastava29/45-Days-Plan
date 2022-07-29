@@ -35,18 +35,35 @@ public:
         //     }
         // }
         // return nums[low];
+        // -------------
+        // int n=nums.size();
+        // int low=0,high=n-1,mid;
+        // while(low<high)
+        // {
+        //     mid=low+(high-low)/2;
+        //     if(nums[mid]<nums[high])
+        //     {
+        //         high=mid;
+        //     }
+        //     else
+        //     {
+        //         low=mid+1;
+        //     }
+        // }
+        // return nums[low];
+        // -----
         int n=nums.size();
         int low=0,high=n-1,mid;
         while(low<high)
         {
             mid=low+(high-low)/2;
-            if(nums[mid]<nums[high])
+            if(nums[mid]>nums[high])
             {
-                high=mid;
+                low=mid+1;
             }
             else
             {
-                low=mid+1;
+                high=mid;
             }
         }
         return nums[low];
