@@ -47,7 +47,7 @@ class Solution {
             {
                 cnt++;
             }
-            for(long long j=i*i;j<=n;j+=i)
+            for(long long j=2*i;j<=n;j+=i)
             {
                 primes[j]=false;
             }
