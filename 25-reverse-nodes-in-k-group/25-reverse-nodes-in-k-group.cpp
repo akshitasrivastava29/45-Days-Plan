@@ -9,38 +9,77 @@
  * };
  */
 class Solution {
+    private:
+    int length(ListNode* head)
+    {
+        int len=0;
+        while(head!=NULL)
+        {
+            head=head->next;
+            len++;
+        }
+        return len;
+    }
 public:
     ListNode* reverseKGroup(ListNode* head, int k) {
+        // if(head==NULL || k==1)
+        // {
+        //     return head;
+        // }
+        // ListNode*dummy=new ListNode(0);
+        // dummy->next=head;
+        // ListNode*curr=dummy;
+        // ListNode*prev=dummy;
+        // ListNode*nexi=dummy;
+        // int len=0;
+        // while(curr->next!=NULL)
+        // {
+        //     curr=curr->next;
+        //     len++;
+        // }
+        // while(len>=k)
+        // {
+        //     curr=prev->next;
+        //     nexi=curr->next;
+        //     for(int i=1;i<k;i++)
+        //     {
+        //         curr->next=nexi->next;
+        //         nexi->next=prev->next;
+        //         prev->next=nexi;
+        //         nexi=curr->next;
+        //     }
+        //     prev=curr;
+        //     len-=k;
+        // }
+        // return dummy->next;
         if(head==NULL || k==1)
         {
             return head;
         }
-        ListNode*dummy=new ListNode(0);
-        dummy->next=head;
-        ListNode*curr=dummy;
-        ListNode*prev=dummy;
-        ListNode*nexi=dummy;
-        int len=0;
-        while(curr->next!=NULL)
+        int cnt=0;
+        ListNode*prev=NULL;
+        ListNode*curr=head;
+        ListNode*nexi;
+        int len=length(curr);
+        if(len>=k)
         {
-            curr=curr->next;
-            len++;
-        }
-        while(len>=k)
-        {
-            curr=prev->next;
-            nexi=curr->next;
-            for(int i=1;i<k;i++)
+            while(curr!=NULL  && cnt<k)
             {
-                curr->next=nexi->next;
-                nexi->next=prev->next;
-                prev->next=nexi;
                 nexi=curr->next;
+                curr->next=prev;
+                prev=curr;
+                curr=nexi;
+                cnt++;
             }
-            prev=curr;
-            len-=k;
+        
+        if(nexi!=NULL)
+        {
+        head->next=reverseKGroup(nexi,k);
         }
-        return dummy->next;
+        return prev;
+        }
+        return head;
+        
         
     }
 };
