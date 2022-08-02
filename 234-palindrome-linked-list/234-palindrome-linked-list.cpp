@@ -131,7 +131,31 @@ public:
 //             slow=slow->next;
 //         }
 //         return true;
+        // ------------------
         
+//         if(head==NULL || head->next==NULL)
+//         {
+//             return true;
+//         }
+//         while(fast->next!=NULL && fast->next->next!=NULL)
+//         {
+//             slow=slow->next;
+//             fast=fast->next->next;
+//         }
+//         slow->next=reverse(slow->next);
+//         slow=slow->next;
+//         while(slow!=NULL)
+//         {
+//             if(head->val!=slow->val)
+//             {
+//                 return false;
+//             }
+//             head=head->next;
+//             slow=slow->next;
+//         }
+        
+//       return true;
+        // ------------
         if(head==NULL || head->next==NULL)
         {
             return true;
@@ -153,8 +177,6 @@ public:
             slow=slow->next;
         }
         
-      return true;
-        
-        
+        return true;
     }
 };
