@@ -68,6 +68,43 @@ public:
         //     ptr2=ptr2->next;
         // }
         // return NULL;
+//         int l1=length(headA);
+//         int l2=length(headB);
+//         int dis=0;
+//         ListNode*p1=headA;
+//         ListNode*p2=headB;
+//         if(l1>l2)
+//         {
+//             dis=l1-l2;
+//             p1=headA;
+//             p2=headB;
+//         }
+//         else
+//         {
+//             dis=l2-l1;
+//             p1=headB;
+//             p2=headA;
+//         }
+//         while(dis!=0)
+//         {
+//             p1=p1->next;
+//             if(p1==NULL)
+//             {
+//                 return NULL;
+//             }
+//             dis--;
+//         }
+//         while(p1!=NULL && p2!=NULL)
+//         {
+//             if(p1==p2)
+//             {
+//                 return p1;
+//             }
+//             p1=p1->next;
+//             p2=p2->next;
+//         }
+//         return NULL;
+       // ------------------
         int l1=length(headA);
         int l2=length(headB);
         int dis=0;
@@ -88,10 +125,6 @@ public:
         while(dis!=0)
         {
             p1=p1->next;
-            if(p1==NULL)
-            {
-                return NULL;
-            }
             dis--;
         }
         while(p1!=NULL && p2!=NULL)
@@ -103,7 +136,7 @@ public:
             p1=p1->next;
             p2=p2->next;
         }
-        return NULL;
+       return NULL; 
         
         
         
