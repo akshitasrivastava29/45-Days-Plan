@@ -35,22 +35,38 @@ class Solution {
     //         dfs(image,i+di[x],j+dj[x],newColor,r,c,source);
     //     }
     // }
-    void dfs(vector<vector<int>>&image,int i,int j,int newColor,int n,int m,int src)
+    // ---------------
+    // void dfs(vector<vector<int>>&image,int i,int j,int newColor,int n,int m,int src)
+    // {
+    //     if(i<0 || j<0 || i>=n || j>=m)
+    //     {
+    //         return ;
+    //     }
+    //     if(image[i][j]!=src)
+    //     {
+    //         return;
+    //     }
+    //     image[i][j]=newColor;
+    //     int di[]={1,0,-1,0};
+    //     int dj[]={0,1,0,-1};
+    //     for(int x=0;x<4;x++)
+    //     {
+    //         dfs(image,i+di[x],j+dj[x],newColor,n,m,src);
+    //     }
+    // }
+    // -----------------
+        void dfs(vector<vector<int>>&image,int i,int j,int newColor,int n,int m,int source)
     {
-        if(i<0 || j<0 || i>=n || j>=m)
-        {
-            return ;
-        }
-        if(image[i][j]!=src)
-        {
-            return;
-        }
+        if(i<0 || i>=n | j<0 || j>=m)return ;
+        if(image[i][j]!=source) return ;
         image[i][j]=newColor;
-        int di[]={1,0,-1,0};
+        int di[]={-1,0,1,0};;
         int dj[]={0,1,0,-1};
         for(int x=0;x<4;x++)
         {
-            dfs(image,i+di[x],j+dj[x],newColor,n,m,src);
+            int newi=i+di[x];
+            int newj=j+dj[x];
+            dfs(image,newi,newj,newColor,n,m,source);
         }
     }
 public:
@@ -71,15 +87,25 @@ public:
         // int source=image[sr][sc];
         // dfs(image,sr,sc,newColor,r,c,source);
         // return image;
-        
+        // -------------------
+        // int n=image.size();
+        // int m=image[0].size();
+        // if(image[sr][sc]==newColor)
+        // {
+        //     return image;
+        // }
+        // int src=image[sr][sc];
+        // dfs(image,sr,sc,newColor,n,m,src);
+        // return image;
+        // ---------------------
         int n=image.size();
         int m=image[0].size();
         if(image[sr][sc]==newColor)
         {
             return image;
         }
-        int src=image[sr][sc];
-        dfs(image,sr,sc,newColor,n,m,src);
+        int source=image[sr][sc];
+        dfs(image,sr,sc,newColor,n,m,source);
         return image;
         
         
