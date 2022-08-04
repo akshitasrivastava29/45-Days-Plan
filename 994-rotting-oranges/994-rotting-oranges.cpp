@@ -119,49 +119,103 @@ public:
 //         }
 //         return -1;
         // --------------------
-        if(grid.size()==0)return 0;
+//         if(grid.size()==0)return 0;
+//         int n=grid.size();
+//         int m=grid[0].size();
+//         int mins=0,tot=0,cnt=0;
+//         queue<pair<int,int>>q;
+//         for(int i=0;i<n;++i)
+//         {
+//             for(int j=0;j<m;++j)
+//             {
+//                 if(grid[i][j]!=0)
+//                     tot++;
+//                 if(grid[i][j]==2)
+//                  q.push({i,j});
+//             }
+//         }
+//         int dx[4]={0,0,1,-1};
+//         int dy[4]={1,-1,0,0};
+//         while(!q.empty())
+//         {
+//             int k=q.size();
+//             cnt+=k;
+//             while(k--)
+//             {
+//                 int x=q.front().first;
+//                 int y=q.front().second;
+//                 q.pop();
+//                 for(int i=0;i<4;i++)
+//                 {
+//                     int newx=x+dx[i];
+//                     int newy=y+dy[i];
+//                     if(newx<0 || newy<0 || newx>=n || newy>=m ||grid[newx][newy]!=1)continue;
+//                     grid[newx][newy]=2;
+//                     q.push({newx,newy});
+//                 }
+//             }
+//             if(!q.empty())mins++;
+//         }
+//         if(tot==cnt)
+//         {
+//             return mins;
+//         }
+//         return -1;
+        
         int n=grid.size();
         int m=grid[0].size();
-        int mins=0,tot=0,cnt=0;
+        if(n==0)return 0;
+        int time=0,tot=0,cnt=0;
         queue<pair<int,int>>q;
-        for(int i=0;i<n;++i)
+        for(int i=0;i<n;i++)
         {
-            for(int j=0;j<m;++j)
+            for(int j=0;j<m;j++)
             {
                 if(grid[i][j]!=0)
+                {
                     tot++;
+                }
                 if(grid[i][j]==2)
-                 q.push({i,j});
+                {
+                    q.push({i,j});
+                }
             }
         }
-        int dx[4]={0,0,1,-1};
-        int dy[4]={1,-1,0,0};
+        int dx[]={0,0,1,-1};
+        int dy[]={1,-1,0,0};
         while(!q.empty())
         {
-            int k=q.size();
-            cnt+=k;
-            while(k--)
+            int size=q.size();
+            cnt+=size;
+           
+            while(size--)
             {
                 int x=q.front().first;
                 int y=q.front().second;
                 q.pop();
-                for(int i=0;i<4;i++)
+                for(int k=0;k<4;k++)
                 {
-                    int newx=x+dx[i];
-                    int newy=y+dy[i];
-                    if(newx<0 || newy<0 || newx>=n || newy>=m ||grid[newx][newy]!=1)continue;
+                    int newx=x+dx[k];
+                    int newy=y+dy[k];
+                    if(newx<0 || newx>=n || newy<0 || newy>=m || grid[newx][newy]!=1)
+                    {
+                        continue;
+                    }
                     grid[newx][newy]=2;
                     q.push({newx,newy});
                 }
             }
-            if(!q.empty())mins++;
+            if(!q.empty())
+            {
+                time++;
+            }
+            
         }
         if(tot==cnt)
         {
-            return mins;
+            return time;
         }
         return -1;
-        
         
     }
 };
