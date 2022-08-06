@@ -87,16 +87,37 @@ public:
         // res.push_back(temp);
         // return res;
         // _____________________---
-        vector<vector<int>>res;
+        // vector<vector<int>>res;
+        // int n=intervals.size();
+        // if(n==0)
+        // {
+        //     return res;
+        // }
+        // sort(intervals.begin(),intervals.end());
+        // vector<int>temp;
+        // temp=intervals[0];
+        // for(auto &it:intervals)
+        // {
+        //     if(it[0]<=temp[1])
+        //     {
+        //         temp[1]=max(temp[1],it[1]);
+        //     }
+        //     else
+        //     {
+        //         res.push_back(temp);
+        //         temp=it;
+        //     }
+        // }
+        // res.push_back(temp);
+        // return res;
+        // --------------
+        vector<vector<int>>ans;
         int n=intervals.size();
-        if(n==0)
-        {
-            return res;
-        }
+        if(n==0)return ans;
         sort(intervals.begin(),intervals.end());
         vector<int>temp;
         temp=intervals[0];
-        for(auto &it:intervals)
+        for(auto&it:intervals)
         {
             if(it[0]<=temp[1])
             {
@@ -104,11 +125,11 @@ public:
             }
             else
             {
-                res.push_back(temp);
+                ans.push_back(temp);
                 temp=it;
             }
         }
-        res.push_back(temp);
-        return res;
+        ans.push_back(temp);
+        return ans;
     }
 };
