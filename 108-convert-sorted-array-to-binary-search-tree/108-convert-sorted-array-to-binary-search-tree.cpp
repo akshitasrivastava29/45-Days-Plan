@@ -10,45 +10,21 @@
  * };
  */
 class Solution {
-//     private:
-//     TreeNode*findmid(vector<int>&nums,int st,int end)
-//     {
-//        if(st>=end)
-//         return NULL;
-//             int mid=st+(end-st)/2;
-//             TreeNode*node=new TreeNode(nums[mid]);
-//             node->left=findmid(nums,st,mid);
-//             node->right=findmid(nums,mid+1,end);
-//             return node;
-        
-     
-//     }
-    private:
-//     TreeNode*getmid(vector<int>&nums,int st,int end)
-//     {
-//         if(st>=end)return NULL;
-//         int mid=st+(end-st)/2;
-//         TreeNode*temp=new TreeNode(nums[mid]);
-//         temp->left=getmid(nums,st,mid);
-//         temp->right=getmid(nums,mid+1,end);
-//         return temp;
-        
-//     }
-    TreeNode*getmid(vector<int>&nums,int st,int end)
+    TreeNode*getmid(vector<int>&nums,int low,int high)
     {
-        if(st>=end)return NULL;
-        int mid=st+(end-st)/2;
-        TreeNode*temp=new TreeNode(nums[mid]);
-        temp->left=getmid(nums,st,mid);
-        temp->right=getmid(nums,mid+1,end);
-        return temp;
+        int n=nums.size();
+        if(low>=high)return NULL;
+        int mid=low+(high-low)/2;
+        TreeNode*root=new TreeNode(nums[mid]);
+        root->left=getmid(nums,low,mid);
+        root->right=getmid(nums,mid+1,high);
+        return root;
     }
-    
 public:
     TreeNode* sortedArrayToBST(vector<int>& nums) {
-        // return findmid(nums,0,nums.size());
-        // return getmid(nums,0,nums.size());
-        return getmid(nums,0,nums.size());
+        int n=nums.size();
+        return getmid(nums,0,n);
+        
         
     }
 };
