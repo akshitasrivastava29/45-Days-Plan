@@ -10,63 +10,21 @@
  * };
  */
 class Solution {
-//     int checkH(TreeNode* root)
-//     {
-//         if(root==NULL)
-//         {
-//             return 0;
-//         }
-//         int lh=checkH(root->left);
-//         int rh=checkH(root->right);
-//         if(lh==-1||rh==-1)
-//         {
-//             return -1;
-//         }
-//         if(abs(lh-rh)>1)
-//         {
-//             return -1;
-//         }
-//         return max(lh,rh)+1;
-
-//     }
-    private:
-    // int checkHt(TreeNode* root)
-    // {
-    //     if(root==NULL)return 0;
-    //     int lh=checkHt(root->left);
-    //     int rh=checkHt(root->right);
-    //     if(lh==-1 || rh==-1)return -1;
-    //     if(abs(lh-rh)>1)return -1;
-    //     return max(lh,rh)+1;
-    // }
-     
-    int height(TreeNode*root)
+    int  getheight(TreeNode*node)
     {
-        if(root==NULL)return 0;
-        int lh=height(root->left);
-        int rh=height(root->right);
-        if(lh==-1 || rh==-1){
-            return -1;
-        }
-        if(abs(lh-rh)>1)
-        {
-            return -1;
-        }
+        if(!node) return 0;
+        int lh=getheight(node->left);
+        int rh=getheight(node->right);
+        if(lh==-1 || rh==-1) return -1;
+        if(abs(lh-rh)>1) return -1;
         return max(lh,rh)+1;
-
     }
 public:
     bool isBalanced(TreeNode* root) {
-        // return checkH(root)!=-1;
-        // if(checkHt(root)!=-1)
-        // {
-        //     return true;
-        // }
-        // return false;
-        if(height(root)!=-1)
+        if(getheight(root)!=-1)
         {
             return true;
         }
-        return false;
+       return false; 
     }
 };
