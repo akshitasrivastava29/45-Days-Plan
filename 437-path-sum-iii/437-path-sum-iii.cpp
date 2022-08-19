@@ -11,26 +11,32 @@
  */
 class Solution {
     int ans=0;
-    private:
-    void solve(TreeNode*root,int targetSum,long long sum)
+    void dfs(TreeNode* root, int targetSum,long long sum)
     {
         if(!root)return ;
-        if(targetSum==sum)
+        if(sum==targetSum)
         {
-            ans=ans+1;
+            ans++;
         }
-        if(root->left) solve(root->left,targetSum,sum+root->left->val);
-        if(root->right) solve(root->right,targetSum,sum+root->right->val);
-    }
- public:
-   
-    int pathSum(TreeNode* root, int targetSum) {
-        if(!root)return 0;
-        solve(root,targetSum,root->val);
+        if(root->left)
+        {
+        dfs(root->left,targetSum,sum+root->left->val);
+        }
+        if(root->right)
+        {
+        dfs(root->right,targetSum,sum+root->right->val);
+        }
         
-        pathSum(root->left,targetSum);
-        pathSum(root->right,targetSum);
+    }
+public:
+    int pathSum(TreeNode* root, int targetSum) {
+        if(root)
+        {
+            dfs(root,targetSum,root->val);
+            pathSum(root->left,targetSum);
+            pathSum(root->right,targetSum);
+        }
         return ans;
-
+        
     }
 };
