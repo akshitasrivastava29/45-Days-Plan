@@ -1,5 +1,5 @@
 class Solution {
-    int getboq(vector<int>&bloomDay,int &k,long long day)
+    bool fun(vector<int>& bloomDay, int day,int m, int k)
     {
         int n=bloomDay.size();
         long res=0,cnt=0;
@@ -18,28 +18,35 @@ class Solution {
                 res++,cnt=0;
             }
         }
-        return res;
+        return (res>=m);
         
     }
 public:
     int minDays(vector<int>& bloomDay, int m, int k) {
-        auto p=minmax_element(bloomDay.begin(),bloomDay.end());
-        int l=*p.first;
-        int h=*p.second;
-        int mid;
-        while(l<h)
+        int n=bloomDay.size();
+        int maxi=bloomDay[0];
+        int ans=0;
+        for(int i=0;i<n;i++)
         {
-            mid=l+(h-l)/2;
-            if(getboq(bloomDay,k,mid)<m)
+            maxi=max(maxi,bloomDay[i]);
+        }
+        int low=1,high=maxi;
+        if(m*k>n) return -1;
+        while(low<high)
+        {
+            int mid=low+(high-low)/2;
+            if(fun(bloomDay,mid,m,k))
             {
-                l=mid+1;
+                high=mid;
             }
             else
             {
-                h=mid;
+                low=mid+1;
             }
+            
         }
-        return  getboq(bloomDay,k,l)>=m?l:-1;
+        return high;
+        
         
     }
 };
