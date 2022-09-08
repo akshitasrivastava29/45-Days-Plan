@@ -8,26 +8,55 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
- class comp
+ // class comp
+ //    {
+ //        public:
+ //        bool operator()(const ListNode *a, const ListNode*b)
+ //        {
+ //            return (a->val>b->val);
+ //        }
+ //    };
+class comp{
+    public:
+    bool operator() (const ListNode*a, const ListNode*b)
     {
-        public:
-        bool operator()(const ListNode *a, const ListNode*b)
-        {
-            return (a->val>b->val);
-        }
-    };
+        return (a->val >b->val);
+    }
+};
 class Solution {
 public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
-        int k=lists.size();
+        int n=lists.size();
+        // ListNode*dummy=new ListNode(-1);
+        // ListNode*temp=dummy;
+        // priority_queue<ListNode*,vector<ListNode*>,comp>pq;   //minheap
+        // for(int i=0;i<k;i++)
+        // {
+        //     if(lists[i]!=NULL)
+        //     {
+        //     pq.push(lists[i]);
+        //     }
+        // }
+        // while(!pq.empty())
+        // {
+        //     auto topi=pq.top();
+        //     pq.pop();
+        //     temp->next=topi;
+        //     temp=temp->next;
+        //     if(topi->next)
+        //     {
+        //         pq.push(topi->next);
+        //     }
+        // }
+        // return dummy->next;
         ListNode*dummy=new ListNode(-1);
         ListNode*temp=dummy;
-        priority_queue<ListNode*,vector<ListNode*>,comp>pq;   //minheap
-        for(int i=0;i<k;i++)
+        priority_queue<ListNode*,vector<ListNode*>,comp>pq;
+        for(int i=0;i<n;i++)
         {
             if(lists[i]!=NULL)
             {
-            pq.push(lists[i]);
+                pq.push(lists[i]);
             }
         }
         while(!pq.empty())
@@ -42,6 +71,5 @@ public:
             }
         }
         return dummy->next;
-        
     }
 };
