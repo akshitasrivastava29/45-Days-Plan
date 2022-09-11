@@ -19,6 +19,15 @@ class Solution {
         if(abs(lh-rh)>1) return -1;
         return max(lh,rh)+1;
     }
+    // int getH(TreeNode*node)
+    // {
+    //     if(!node) return 0;
+    //     int lh=getH(node->left);
+    //     int rh=getH(node->right);
+    //     if(lh==-1 || rh==-1) return -1;
+    //     if(abs(lh-rh)>1) return -1;
+    //     return max(lh,rh)+1;
+    // }
 public:
     bool isBalanced(TreeNode* root) {
         if(getheight(root)!=-1)
@@ -26,5 +35,11 @@ public:
             return true;
         }
        return false; 
+        
+        // if(getH(root)!=-1)
+        // {
+        //     return true;
+        // }
+        // return false;
     }
 };
