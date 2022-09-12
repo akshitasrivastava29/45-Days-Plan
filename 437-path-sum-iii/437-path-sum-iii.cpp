@@ -10,26 +10,52 @@
  * };
  */
 class Solution {
+//     int ans=0;
+//     void dfs(TreeNode* root, int targetSum,long long sum)
+//     {
+//         if(!root)return ;
+//         if(sum==targetSum)
+//         {
+//             ans++;
+//         }
+//         if(root->left)
+//         {
+//         dfs(root->left,targetSum,sum+root->left->val);
+//         }
+//         if(root->right)
+//         {
+//         dfs(root->right,targetSum,sum+root->right->val);
+//         }
+        
+//     }
     int ans=0;
     void dfs(TreeNode* root, int targetSum,long long sum)
-    {
-        if(!root)return ;
-        if(sum==targetSum)
         {
-            ans++;
+            if(root==NULL) return ;
+            if(sum==targetSum)
+            {
+                ans++;
+            }
+            if(root->left)
+            {
+                dfs(root->left,targetSum,sum+root->left->val);
+            }
+            if(root->right)
+            {
+                dfs(root->right,targetSum,sum+root->right->val);
+            }
         }
-        if(root->left)
-        {
-        dfs(root->left,targetSum,sum+root->left->val);
-        }
-        if(root->right)
-        {
-        dfs(root->right,targetSum,sum+root->right->val);
-        }
-        
-    }
 public:
     int pathSum(TreeNode* root, int targetSum) {
+        // if(root)
+        // {
+        //     dfs(root,targetSum,root->val);
+        //     pathSum(root->left,targetSum);
+        //     pathSum(root->right,targetSum);
+        // }
+        // return ans;
+        
+        
         if(root)
         {
             dfs(root,targetSum,root->val);
@@ -37,6 +63,5 @@ public:
             pathSum(root->right,targetSum);
         }
         return ans;
-        
     }
 };
