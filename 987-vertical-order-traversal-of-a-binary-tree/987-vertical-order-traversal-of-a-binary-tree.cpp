@@ -17,11 +17,11 @@ public:
 //         q.push({root,{0,0}});
 //         while(!q.empty())
 //         {
-//             auto it=q.front();
+//             auto p=q.front();
 //             q.pop();
-//             TreeNode*node=it.first;
-//             int x=it.second.first;
-//             int y=it.second.second;
+//             TreeNode*node=p.first;
+//             int x=p.second.first;
+//             int y=p.second.second;
 //             mp[x][y].insert(node->val);
 //             if(node->left)
 //             {
@@ -31,52 +31,18 @@ public:
 //             {
 //                 q.push({node->right,{x+1,y+1}});
 //             }
-// ;        }
+//         }
 //         vector<vector<int>>ans;
-//         for(auto it:mp)
+//         for(auto p:mp)
 //         {
 //             vector<int>col;
-//             for(auto x:it.second)
+//             for(auto q:p.second)
 //             {
-//                 col.insert(col.end(),x.second.begin(),x.second.end());
+//                 col.insert(col.end(),q.second.begin(),q.second.end());
 //             }
 //             ans.push_back(col);
 //         }
-//         return ans;
-        
-        
-        // map<int,map<int,multiset<int>>>mp;
-        // queue<pair<TreeNode*,pair<int,int>>>q;
-        // q.push({root,{0,0}});
-        // while(!q.empty())
-        // {
-        //     auto p=q.front();
-        //     q.pop();
-        //     TreeNode*node=p.first;
-        //     int x=p.second.first;
-        //     int y=p.second.second;
-        //     mp[x][y].insert(node->val);
-        //     if(node->left)
-        //     {
-        //         q.push({node->left,{x-1,y+1}});
-        //     }
-        //     if(node->right)
-        //     {
-        //         q.push({node->right,{x+1,y+1}});
-        //     }
-        // }
-        // vector<vector<int>>ans;
-        // for(auto p:mp)
-        // {
-        //     vector<int>vertical;
-        //     for(auto q:p.second)
-        //     {
-        //         vertical.insert(vertical.end(),q.second.begin(),q.second.end());
-        //     }
-        //     ans.push_back(vertical);
-        // }
-        // return ans;
-        
+//        return ans; 
         
         map<int,map<int,multiset<int>>>mp;
         queue<pair<TreeNode*,pair<int,int>>>q;
@@ -97,18 +63,20 @@ public:
             {
                 q.push({node->right,{x+1,y+1}});
             }
-            
         }
         vector<vector<int>>ans;
-        for(auto p:mp)
+        for(auto it:mp)
         {
             vector<int>col;
-            for(auto q:p.second)
+            for(auto q:it.second)
             {
                 col.insert(col.end(),q.second.begin(),q.second.end());
             }
             ans.push_back(col);
         }
         return ans;
+        
+        
+        
     }
 };
